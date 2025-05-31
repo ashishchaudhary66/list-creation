@@ -1,0 +1,11 @@
+/* === src/components/FailureView.css === */
+.failure-view {
+  text-align: center;
+  padding: 40px;
+  color: red;
+  font-size: 18px;
+}
+
+.failure-view button {
+  margin-top: 20px;
+}

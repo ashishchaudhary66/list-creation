@@ -1,0 +1,21 @@
+/* === src/components/ListContainer.css === */
+.list-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 250px;
+  max-width: 400px;
+  flex: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #e5f7fd;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.list-checkbox {
+  margin-right: 10px;
+}
+
+.list-header{
+    display: flex;
+}

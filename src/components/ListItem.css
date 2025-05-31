@@ -1,0 +1,42 @@
+/* === src/components/ListItem.css === */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 8px;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.arrows button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0 4px;
+  color: #72b7fc;
+  padding: 5px;
+}
+
+.arrows button:hover {
+  background-color: transparent;
+  color: #0e85fd;
+  scale: 1.5;
+  transition: 300ms;
+}
+
+.list-item-info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+.list-name{
+    font-size: medium;
+    font-weight: 600;
+}
+.list-description{
+    font-size: small;
+}
