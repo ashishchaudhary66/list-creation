@@ -7,7 +7,6 @@ import './DashBoard.css';
 import { fetchLists } from '../utils/api';
 import { useDispatch } from 'react-redux';
 import { addToLeftList, addToRightList, resetLists } from '../features/list/listSlice';
-import { useSavePrevListData } from '../utils/customHooks';
 
 const DashBoard = () => {
   const [isLoading, setIsLoading] = useState(false);
