@@ -6,7 +6,6 @@ export const useSavePrevListData = () => {
   const leftList = useSelector(state => state.list.leftList);
   const rightList = useSelector(state => state.list.rightList);
   const middleList = useSelector(state => state.list.middleList);
-  console.log("leftList: ",leftList);
   const save = () => {
     dispatch(savePrevList({ leftList, rightList, middleList }));
   };
