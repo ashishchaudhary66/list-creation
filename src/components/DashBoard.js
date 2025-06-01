@@ -19,9 +19,9 @@ const DashBoard = () => {
     setIsLoading(true);
     setIsError(false);
     try {
+      dispatch(resetLists());
       const response = await fetchLists();
       const data = response.lists;
-      dispatch(resetLists());
       data.forEach(element => {
         if(element.list_number===1){
           dispatch(addToLeftList(element));
