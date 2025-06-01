@@ -2,13 +2,11 @@
 import React, { useState } from 'react';
 import ListContainer from './ListContainer';
 import './ListSelection.css';
+import { useSelector } from 'react-redux';
 
 const ListSelection = ({ lists, selectedLists, setSelectedLists, onCreateList }) => {
-  const groupedLists = lists.reduce((acc, item) => {
-    acc[item.list_number] = acc[item.list_number] || [];
-    acc[item.list_number].push(item);
-    return acc;
-  }, {});
+  const leftList = useSelector(state => state.list.leftList);
+  const rightList = useSelector(state => state.list.rightList);
 
   const [error, setError] = useState('');
 
@@ -36,16 +34,20 @@ const ListSelection = ({ lists, selectedLists, setSelectedLists, onCreateList })
         {error && <p className="error-msg">{error}</p>}
       </div>
       <div className="list-container-wrapper">
-        {Object.entries(groupedLists).map(([listNumber, items]) => (
-          <ListContainer
-            key={listNumber}
-            listNumber={parseInt(listNumber)}
-            items={items}
+        <ListContainer
+            listNumber={1}
+            items={leftList}
             isSelectable
-            isChecked={selectedLists.includes(parseInt(listNumber))}
-            onCheck={() => handleCheckbox(parseInt(listNumber))}
+            isChecked={selectedLists.includes(1)}
+            onCheck={() => handleCheckbox(1)}
           />
-        ))}
+          <ListContainer
+            listNumber={2}
+            items={rightList}
+            isSelectable
+            isChecked={selectedLists.includes(2)}
+            onCheck={() => handleCheckbox(2)}
+          />
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ import ListSelection from './ListSelection';
 import ListCreation from './ListCreation';
 import './DashBoard.css';
 import { fetchLists } from '../utils/api';
+import { useDispatch } from 'react-redux';
+import { addToLeftList, addToRightList } from '../features/list/listSlice';
 
 const DashBoard = () => {
   const [lists, setLists] = useState([]);
@@ -12,13 +14,25 @@ const DashBoard = () => {
   const [isError, setIsError] = useState(false);
   const [viewMode, setViewMode] = useState('selection');
   const [selectedLists, setSelectedLists] = useState([]);
+  const dispatch = useDispatch();
 
   const getLists = async () => {
     setIsLoading(true);
     setIsError(false);
     try {
       const response = await fetchLists();
-      setLists(response.lists);
+      const data = response.lists;
+      setLists(data);
+
+      data.forEach(element => {
+        if(element.list_number===1){
+          dispatch(addToLeftList(element));
+        }
+        else if(element.list_number===2){
+          dispatch(addToRightList(element));
+        }
+      });
+      
     } catch (error) {
       setIsError(true);
     } finally {

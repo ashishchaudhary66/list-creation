@@ -6,7 +6,7 @@ const initialState = {
   rightList: [],
 };
 
-export const counterSlice = createSlice({
+export const listSlice = createSlice({
   name: "list",
   initialState,
   reducers: {
