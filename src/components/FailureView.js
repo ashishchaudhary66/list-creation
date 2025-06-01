@@ -1,4 +1,3 @@
-/* === src/components/FailureView.js === */
 import React from 'react';
 import './FailureView.css';
 

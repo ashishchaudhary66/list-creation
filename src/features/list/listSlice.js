@@ -11,33 +11,31 @@ export const listSlice = createSlice({
   initialState,
   reducers: {
     addToMiddleList: (state, action) => {
-      state.middleList.push(action.payload);
+      state.middleList.unshift({ ...action.payload, list_number: 0 });
     },
     addToLeftList: (state, action) => {
-      state.leftList.push(action.payload);
+      state.leftList.unshift({ ...action.payload, list_number: 1 });
     },
     addToRightList: (state, action) => {
-      state.rightList.push(action.payload);
+      state.rightList.unshift({ ...action.payload, list_number: 2 });
     },
     removeFromMiddleList: (state, action) => {
-      state.middleList = state.middleList.filter(
-        (list) => list.id !== action.payload
-      );
+      const itemId = action.payload.id;
+      state.middleList = state.middleList.filter((item) => item.id !== itemId);
     },
     removeFromLeftList: (state, action) => {
-      state.leftList = state.leftList.filter(
-        (list) => list.id !== action.payload
+      const itemId = action.payload.id;
+      state.leftList = state.leftList.filter((item) => {
+        return item.id !== itemId}
       );
     },
     removeFromRightList: (state, action) => {
-      state.rightList = state.rightList.filter(
-        (list) => list.id !== action.payload
-      );
+      const itemId = action.payload.id;
+      state.rightList = state.rightList.filter((item) => item.id !== itemId);
     },
   },
 });
 
-// Action creators are generated for each case reducer function
 export const {
   addToLeftList,
   addToRightList,

@@ -1,4 +1,3 @@
-/* === src/components/ListContainer.css === */
 .list-box {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -17,5 +16,5 @@
 }
 
 .list-header{
-    display: flex;
+  display: flex;
 }

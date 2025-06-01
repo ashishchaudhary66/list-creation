@@ -1,10 +1,9 @@
-/* === src/components/ListSelection.js === */
 import React, { useState } from 'react';
 import ListContainer from './ListContainer';
 import './ListSelection.css';
 import { useSelector } from 'react-redux';
 
-const ListSelection = ({ lists, selectedLists, setSelectedLists, onCreateList }) => {
+const ListSelection = ({ selectedLists, setSelectedLists, onCreateList }) => {
   const leftList = useSelector(state => state.list.leftList);
   const rightList = useSelector(state => state.list.rightList);
 

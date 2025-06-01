@@ -1,9 +1,8 @@
-/* === src/components/ListContainer.js === */
 import React from 'react';
 import ListItem from './ListItem';
 import './ListContainer.css';
 
-const ListContainer = ({ listNumber, items, isSelectable, isChecked, onCheck, onItemAction }) => (
+const ListContainer = ({ listNumber, items, isSelectable, isChecked, onCheck }) => (
   <div className="list-box">
     <div className='list-header'>
         {isSelectable && (
@@ -14,11 +13,11 @@ const ListContainer = ({ listNumber, items, isSelectable, isChecked, onCheck, on
             className="list-checkbox"
         />
         )}
-        <h3>List {listNumber}</h3>
+        <h3>List {listNumber!==0?listNumber:"Middle"}</h3>
     </div>
     
-    {items.map(item => (
-      <ListItem key={item.id} item={item} onItemAction={onItemAction} listNumber={listNumber} />
+    {items.map((item,index) => (
+      <ListItem key={index} item={item} listNumber={item.list_number} isSelectable={isSelectable} />
     ))}
   </div>
 );
