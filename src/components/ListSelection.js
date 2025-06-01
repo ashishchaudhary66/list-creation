@@ -26,10 +26,12 @@ const ListSelection = ({ selectedLists, setSelectedLists, onCreateList }) => {
   };
 
   return (
-    <div>
+    <div className='list-selection-view'>
       <div className="list-selection">
-        <h1>List Creation</h1>
-        <button onClick={handleCreate}>Create a new list</button>
+        <h1>List Selection</h1>
+        <div className="actions">
+          <button onClick={handleCreate}>Create a new list</button>
+        </div>
         {error && <p className="error-msg">{error}</p>}
       </div>
       <div className="list-container-wrapper">
