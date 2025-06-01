@@ -4,6 +4,9 @@ const initialState = {
   middleList: [],
   leftList: [],
   rightList: [],
+  prevMiddleList:[],
+  prevLeftList:[],
+  prevRightList:[],
 };
 
 export const listSlice = createSlice({
@@ -33,6 +36,24 @@ export const listSlice = createSlice({
       const itemId = action.payload.id;
       state.rightList = state.rightList.filter((item) => item.id !== itemId);
     },
+    savePrevList : (state, action) => {
+      state.prevMiddleList = [...action.payload.middleList];
+      state.prevLeftList = [...action.payload.leftList];
+      state.prevRightList = [...action.payload.rightList];
+    },
+    updateToPrev : (state, action) => {
+      state.middleList = [...action.payload.prevMiddleList];
+      state.leftList = [...action.payload.prevLeftList];
+      state.rightList = [...action.payload.prevRightList];
+    },
+    resetLists: (state) => {
+      state.middleList = [];
+      state.leftList = [];
+      state.rightList = [];
+      state.prevMiddleList = [];
+      state.prevLeftList = [];
+      state.prevRightList = [];
+    },
   },
 });
 
@@ -43,6 +64,9 @@ export const {
   removeFromLeftList,
   removeFromMiddleList,
   removeFromRightList,
+  savePrevList,
+  updateToPrev,
+  resetLists,
 } = listSlice.actions;
 
 export default listSlice.reducer;

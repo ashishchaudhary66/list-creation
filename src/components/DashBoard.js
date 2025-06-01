@@ -6,24 +6,23 @@ import ListCreation from './ListCreation';
 import './DashBoard.css';
 import { fetchLists } from '../utils/api';
 import { useDispatch } from 'react-redux';
-import { addToLeftList, addToRightList } from '../features/list/listSlice';
+import { addToLeftList, addToRightList, resetLists } from '../features/list/listSlice';
+import { useSavePrevListData } from '../utils/customHooks';
 
 const DashBoard = () => {
-  const [lists, setLists] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [viewMode, setViewMode] = useState('selection');
   const [selectedLists, setSelectedLists] = useState([]);
   const dispatch = useDispatch();
-
+  
   const getLists = async () => {
     setIsLoading(true);
     setIsError(false);
     try {
       const response = await fetchLists();
       const data = response.lists;
-      setLists(data);
-
+      dispatch(resetLists());
       data.forEach(element => {
         if(element.list_number===1){
           dispatch(addToLeftList(element));
@@ -32,7 +31,6 @@ const DashBoard = () => {
           dispatch(addToRightList(element));
         }
       });
-      
     } catch (error) {
       setIsError(true);
     } finally {
@@ -44,12 +42,6 @@ const DashBoard = () => {
     getLists();
   }, []);
 
-  const updateLists = (updatedLists) => {
-    setLists(updatedLists);
-    setSelectedLists([]);
-    setViewMode('selection');
-  };
-
   if (isLoading) return <Loader />;
   if (isError) return <FailureView onRetry={getLists} />;
 
@@ -57,17 +49,13 @@ const DashBoard = () => {
     <div className="dashboard-container">
       {viewMode === 'selection' ? (
         <ListSelection
-          lists={lists}
           selectedLists={selectedLists}
           setSelectedLists={setSelectedLists}
           onCreateList={() => setViewMode('creation')}
         />
       ) : (
         <ListCreation
-          lists={lists}
-          selectedLists={selectedLists}
           onCancel={() => setViewMode('selection')}
-          onUpdate={updateLists}
         />
       )}
     </div>

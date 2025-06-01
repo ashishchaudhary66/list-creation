@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import ListContainer from './ListContainer';
 import './ListSelection.css';
 import { useSelector } from 'react-redux';
+import { useSavePrevListData } from '../utils/customHooks';
 
 const ListSelection = ({ selectedLists, setSelectedLists, onCreateList }) => {
   const leftList = useSelector(state => state.list.leftList);
   const rightList = useSelector(state => state.list.rightList);
-
+  const saveToCurrData = useSavePrevListData();
+  
   const [error, setError] = useState('');
 
   const handleCheckbox = (listNumber) => {
@@ -17,6 +19,7 @@ const ListSelection = ({ selectedLists, setSelectedLists, onCreateList }) => {
   };
 
   const handleCreate = () => {
+    saveToCurrData();
     if (selectedLists.length !== 2) {
       setError('You should select exactly 2 lists to create a new list');
     } else {
